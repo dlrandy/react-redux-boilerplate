@@ -1,0 +1,15 @@
+,
+   "plugins": [
+    "transform-react-constant-elements", 
+    "transform-react-inline-elements",
+    require('babel-plugin-array-includes').default,
+
+    require('babel-plugin-syntax-class-properties'),
+    require('babel-plugin-syntax-decorators'),
+    require('babel-plugin-syntax-object-rest-spread'),
+
+    require('babel-plugin-transform-class-properties'),
+    require('babel-plugin-transform-decorators-legacy').default,
+    require('babel-plugin-transform-object-assign'),
+    require('babel-plugin-transform-object-rest-spread')
+  ]
