@@ -4,4 +4,5 @@ export DevTools from './DevTools';
 export About  from './About/About';
 export Article  from './Article/Article'; 
 export Articles  from './Articles/Articles'; 
-export NoMatch  from './NoMatch/NoMatch';  
+export NoMatch  from './NoMatch/NoMatch'; 
+export TopRightMenu from './TopRightMenu/TopRightMenu'; 

@@ -1,4 +1,4 @@
-$bgColor: #EE0D0D;
+$bgColor: #fff;
 
 .ant-layout-top {
   height: 100%;
@@ -6,6 +6,12 @@ $bgColor: #EE0D0D;
 
 .ant-layout-top .ant-layout-wrapper {
   padding: 0 50px;
+  .ant-layout-main{
+    
+  }
+  .ant-layout-right{
+    
+  }
 }
 
 .ant-layout-top .ant-layout-header {
@@ -23,15 +29,8 @@ $bgColor: #EE0D0D;
   background: url('/static/images/logo.png');
 }
 
-.ant-layout-top .ant-layout-subheader {
-  height: 48px;
-  border-bottom: 1px solid #e9e9e9;
-  background: #fff;
-}
 
-.ant-layout-top .ant-layout-breadcrumb {
-  margin: 7px 0 -17px 24px;
-}
+
 
 .ant-layout-top .ant-layout-container {
   background: #fff;

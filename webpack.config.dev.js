@@ -13,9 +13,9 @@ module.exports = {
     entry: {
       main: [
       'babel-polyfill',//不加这个livereload不好使
-      'webpack/hot/only-dev-server',
-      'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true',
-        path.resolve(__dirname,'.','src/browser.js')
+      // 'webpack/hot/only-dev-server',
+      'webpack-hot-middleware/client?path=__webpack_hmr&reload=true',
+        path.resolve(__dirname,'.','./src/browser.js')
       ],
       vendor: [
 		 'react',

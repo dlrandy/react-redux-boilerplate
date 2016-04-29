@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers';
 import createLogger from 'redux-logger';
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk';//这里我们并没用thunk中间件
 import DevTools from '../containers/DevTools';
 import promise from 'redux-promise';
 

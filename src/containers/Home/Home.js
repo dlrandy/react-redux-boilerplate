@@ -24,7 +24,7 @@ class Home extends React.Component {
     return (
       <div>
         <Helmet title="Home"/>
-          <p className="test">This {this.state} fdfd yuyuystarter boilerplate app uses the following technologies:</p>
+          <p className="test">This  {this.state} fdfd yuyuystarter boilerplate app uses the following technologies:</p>
       </div>
     );
   }
