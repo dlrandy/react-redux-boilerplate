@@ -1,7 +1,7 @@
 import {FETCH_POSTS, FETCH_POSTS_SUCCESS,FETCH_POSTS_FAILURE} from '../../constants/articles';
 
 const INITIAL_STATE = {
-	postsList:{posts:[], error:null, loading: false},
+	postsList:{posts:null, error:null, loading: false},
 	newPost: {post: null, error: null, loading: false},
 	deletePost: {post: null, error:null, loading: false},
 	activePost:{post: null, error: null, loading: false}
@@ -16,7 +16,7 @@ export default function articles(state = INITIAL_STATE, action={}) {
 	  	return {
 	  	  ...state,
 	  	  postsList: {
-	  	  	posts: [], 
+	  	  	posts: null, 
 	  	  	error: null, 
 	  	  	loading: true
 	  	  }
@@ -25,17 +25,17 @@ export default function articles(state = INITIAL_STATE, action={}) {
 	  	return {
 	      ...state,
 	      postsList: {
-	      	posts: action.payload,
+	      	posts: action.payload,//Code: "200", status: true, Message: "OK", nowtime: "1462493842", ResultData: Object
 	      	error: null, 
 	      	loading: false
 	      }
 	  	};
 	  case FETCH_POSTS_FAILURE:
-	  	error = action.payload.data || action.payload.message;
+	  	error = action.payload.error || action.payload.message;
 	  	return {
 	  	  ...state,
 	  	  postsList: {
-	  	  	posts: [], 
+	  	  	posts: null, 
 	  	  	error: error,
 	  	  	loading: false
 	  	  }

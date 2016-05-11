@@ -2,7 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
-
+// require.ensure("../utils/ueditor.config.js");
+// require.ensure("../utils/ueditor.all.js");
 
 export default class Html extends Component {
   static propTypes = {
@@ -25,6 +26,9 @@ console.log('content =>>>>>',content);
           {head.meta.toComponent()}
           {head.link.toComponent()}
           {head.script.toComponent()}
+          <script src="/static/lib/ueditor.config.js" />
+          <script src="/static/lib/ueditor.all.js" />
+          <script src="/static/lib/zh-cn.js" />
 
           <link rel="shortcut icon" href="/favicon.ico" />
           <link rel="stylesheet" type="text/css" href='/static/css/antd.css'/>
@@ -37,6 +41,7 @@ console.log('content =>>>>>',content);
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
           <script src="/dist/vendor.js" charSet="UTF-8"/>
           <script src="/dist/main.js" charSet="UTF-8"/>
+
         </body>
       </html>
     );

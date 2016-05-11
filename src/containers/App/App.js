@@ -2,9 +2,13 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Menu, Row, Col, Spin } from 'antd';
+import fetch from 'isomorphic-fetch';
+import cookie from 'react-cookie';
 
 import { LogReg } from '../../components';
 import { TopRightMenu } from '../../containers';
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,8 +23,23 @@ class App extends React.Component {
     //   console.log('login out');
     // }
   }
+  componentWillMount() {
+        let guest = cookie.load("guest");
+        console.log("------------------>",guest);
+        if(!guest) {
+            fetch('/api/guest/Login',{
+              credentials: 'same-origin'
+            }).then(function(res){
+              console.log("=>>>>>>>>>>>>>>>>>>>>>>>>", res);
+            }).catch(function(res){
+              console.log("=>>>>>>>>>>>>>>>>>>>>>>>>", res);
+            });
+          }
+  }
+
   render() {
     const { auth } = this.props;
+    const jwtToken = sessionStorage.getItem('jwtToken');
     return (
       <div>
         <div className="ant-layout-top">
@@ -33,17 +52,12 @@ class App extends React.Component {
                   </Link>
                 </Col>
                 <Col span="10">
-                  <Menu theme="green" mode="horizontal"
-                    defaultSelectedKeys={ ['1'] } style={{ lineHeight: '64px', textAlign: 'right' }}>
-                    <Menu.Item key="1"><Link to='/'>主页</Link></Menu.Item>
-                    <Menu.Item key="2"><Link to='/articles'>文章</Link></Menu.Item>
-                    <Menu.Item key="3"><Link to='/about'>关于</Link></Menu.Item>
-                  </Menu>
+                
                 </Col>
                 <Col span="6">
                   <div>
-                    { !(auth.user) && <LogReg /> }
-                    { auth.user && <TopRightMenu /> }
+                    { !(auth.user) && !jwtToken && <LogReg /> }
+                    { (auth.user|| jwtToken) && <TopRightMenu /> }
                   </div>
                 </Col>
               </Row>
@@ -52,7 +66,7 @@ class App extends React.Component {
           </div>
           <div className="ant-layout-wrapper">
             <div className="ant-layout-container">
-              <div style={{ height: 210 }}>
+              <div>
                 { this.props.children }
               </div>
             </div>

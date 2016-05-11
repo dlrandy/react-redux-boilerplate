@@ -3,7 +3,11 @@ import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import classnames from'classnames';
-import { fetchPosts, fetchPostsSuccess, fetchPostsFailure } from '../../actions/articles';
+import QCircleList from '../QCircleList/QCircleList';
+import Ueditor from '../../components/Ueditor/Ueditor';
+import Shuoshuo from '../Shuoshuo/Shuoshuo';
+import { SubMenu, RecommandUser, RecommandWeibo } from '../../components';
+import { Row, Col, Affix } from 'antd';
 if (process.env.BROWSER) var styles = require('./Home.scss');
 // http://mobxjs.github.io/mobx/best/stateless-HMR.html
 class Home extends React.Component {
@@ -15,38 +19,52 @@ class Home extends React.Component {
   static propTypes = {
      user: PropTypes.object
   }
-  componentWillMount() {
-    this.props.fetchPostsInComponent();       
-  }
 
   render() {
-  console.log(this.props.postsList);
+   let styleOfUe = {
+    margin: "0 auto"
+   };
     return (
       <div>
         <Helmet title="Home"/>
-          <p className="test">This  {this.state} fdfd yuyuystarter boilerplate app uses the following technologies:</p>
+          <Row className="">
+            <Col span="18">
+              <SubMenu />
+              <QCircleList />
+              <Ueditor value="" style={styleOfUe} id="editorContainer" width="700" height="80" /> 
+              <Shuoshuo />
+            </Col>
+            <Col span="6">
+            <RecommandUser />
+            <Affix offset={2}>
+               <RecommandWeibo />
+            </Affix>
+            </Col>
+          </Row>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) =>{
-	console.log(state);
-	return {
-		postsList: state.articles.postsList
-	};
-}
+export default Home;
 
-const mapDispatchToPorps= (dispatch) =>{
-	return {
-		fetchPostsInComponent: () =>{
-			fetchPosts().then((response) => {
-        console.log(response);
-            dispatch(fetchPostsSuccess(response));
-          });
+// const mapStateToProps = (state) =>{
+// 	const { postsList } = state.articles;
+// 	return {
+// 		postsList
+// 	};
+// }
+
+// const mapDispatchToPorps= (dispatch) =>{
+// 	return {
+// 		fetchPostsInComponent: () =>{
+// 			fetchPosts().then((response) => {
+//         console.log(response);
+//             dispatch(fetchPostsSuccess(response));
+//           });
 			
-		}
-	};
-}
-const PostsListsContainer =connect(mapStateToProps, mapDispatchToPorps)(Home);
-export default PostsListsContainer;
+// 		}
+// 	};
+// }
+
+// export default connect(mapStateToProps, mapDispatchToPorps)(Home);

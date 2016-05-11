@@ -11,6 +11,7 @@ export function login(user) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',//不加，token不会覆盖
     body: JSON.stringify({
       UserName: userName,
       Password: password,

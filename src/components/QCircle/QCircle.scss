@@ -1,0 +1,23 @@
+.q-circle{
+ a{
+ 	display: inline-block;
+ 	width: 128px;
+ 	height: 128px;
+    margin: 10px 20px;
+    overflow: hidden;
+    background: red;
+    text-align: center;
+    p{
+    	margin-top: 100px;
+    	transition: margin-top .2s ease-in-out;
+    }
+    &:hover{
+      
+    }
+    &:hover p{
+        margin-top: 30px;
+    }
+
+ }
+}
+ 

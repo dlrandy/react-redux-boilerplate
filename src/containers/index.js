@@ -6,3 +6,4 @@ export Article  from './Article/Article';
 export Articles  from './Articles/Articles'; 
 export NoMatch  from './NoMatch/NoMatch'; 
 export TopRightMenu from './TopRightMenu/TopRightMenu'; 
+export Commentlist from './Commentlist/Commentlist';

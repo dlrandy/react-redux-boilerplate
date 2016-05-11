@@ -1,6 +1,7 @@
 import React , { PropTypes }from 'react';
 import { Modal, Button, Form, Input, Checkbox } from 'antd';
 import { connect } from 'react-redux';
+import cookie from 'react-cookie';
 import { login, loginSuccess, loginFailure } from '../../actions/auth';
 import { LOGIN, LOGIN_RESET } from '../../constants/auth';
 const FormItem = Form.Item;
@@ -55,7 +56,7 @@ class Login extends React.Component {
     	// Login.js:21 Uncaught TypeError: Cannot set property 'loading' of undefined
     }
     handleCancel(){
-    	this.currentFetch && this.currentFetch.abort();
+    	// this.currentFetch && this.currentFetch.abort();
     	this.setState({ visible: false});
     	this.props.reset();
     	this.setState({ loading: false});
@@ -135,8 +136,9 @@ Login.propTypes = {
     dispatch: PropTypes.func.isRequired,
 };
 function mapStateToProps(state, ownProps) {
+  const { auth } = state;
 	return {
-		auth: state.auth,
+		auth
 	};
 }
 const signInUser = (values, dispatch) => {
@@ -152,6 +154,8 @@ const signInUser = (values, dispatch) => {
 			if (data.status == false) {
 				return dispatch(loginFailure(data));
 			} else {
+          sessionStorage.setItem('jwtToken', true);
+          cookie.remove('guest');
 			    dispatch(loginSuccess(data));
 			}
 		}).catch((error) => {
