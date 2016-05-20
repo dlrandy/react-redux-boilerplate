@@ -7,15 +7,16 @@ import Helmet from 'react-helmet';
 
 export default class Html extends Component {
   static propTypes = {
+    assets: PropTypes.object,
     component: PropTypes.node,
-    store: PropTypes.object
+    store: PropTypes.object,
   };
 
   render() {
-    const {component, store} = this.props;
+    const {assets, component, store} = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
-console.log('content =>>>>>',content);
+console.log('assets =>>>>>',assets);
     return (
       <html lang="en-us">
         <head>
@@ -37,11 +38,10 @@ console.log('content =>>>>>',content);
         
          </head>
         <body>
+        { Object.keys(assets.styles).length === 0 ? <style dangerouslySetInnerHTML={{__html: assets.assets["./src/containers/main.scss"]._style}}/> : null }
           <div id="content" dangerouslySetInnerHTML={{__html: content}} />
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
-          <script src="/dist/vendor.js" charSet="UTF-8"/>
-          <script src="/dist/main.js" charSet="UTF-8"/>
-
+          <script src={assets.javascript.main} charSet="UTF-8"/>
         </body>
       </html>
     );

@@ -12,6 +12,7 @@ let url = '/api/weibo/GetGuestRecommendWeiboList';
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
      body: JSON.stringify({
       param1:undefined,
       param2:undefined,

@@ -8,6 +8,7 @@ import cookie from 'react-cookie';
 import { LogReg } from '../../components';
 import { TopRightMenu } from '../../containers';
 
+import styles from './App.scss';
 
 class App extends React.Component {
   constructor(props) {
@@ -39,43 +40,44 @@ class App extends React.Component {
 
   render() {
     const { auth } = this.props;
-    const jwtToken = sessionStorage.getItem('jwtToken');
+    // const jwtToken = sessionStorage.getItem('jwtToken');应该在action里
+    // const logoImg = require('./img/logo.png');
+    // <img src={logoImg} />
     return (
-      <div>
-        <div className="ant-layout-top">
-          <div className="ant-layout-header">
-            <div className="ant-layout-wrapper">
+        <div className={styles["ant-layout-top"]}>
+          <div className={styles["ant-layout-header"]}>
+            <div className={styles["ant-layout-wrapper"]}>
               <Row type="flex" justify="space-around" align="middle">
                 <Col span="8">
                   <Link to="/">
-                    <div className="ant-layout-logo" />
+                    <div className={styles["ant-layout-logo"]}>
+                       
+                    </div>
                   </Link>
                 </Col>
-                <Col span="10">
-                
-                </Col>
+                <Col span="10" > gop</Col>
                 <Col span="6">
                   <div>
-                    { !(auth.user) && !jwtToken && <LogReg /> }
-                    { (auth.user|| jwtToken) && <TopRightMenu /> }
+                    { !(auth.user)  && <LogReg /> }
+                    { (auth.user) && <TopRightMenu /> }
                   </div>
                 </Col>
               </Row>
               
             </div>
           </div>
-          <div className="ant-layout-wrapper">
-            <div className="ant-layout-container">
+          <div className={styles["ant-layout-wrapper"]}>
+            <div className={styles["ant-layout-container"]}>
               <div>
                 { this.props.children }
               </div>
             </div>
           </div>
-          <div className="ant-layout-footer">
+          <div className={styles["ant-layout-footer"]}>
           期货圈 版权所有 © 2016 由文华财经产品开发二部支持
           </div>
         </div>
-      </div>
+      
     );
   }
 }

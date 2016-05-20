@@ -11,6 +11,7 @@ export function fetchPosts() {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
     body: JSON.stringify({
       userid: 0,
       ptype: 1,

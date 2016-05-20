@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Spin } from 'antd';
+import { Spin, Alert } from 'antd';
 import { 
     fetchRecommandWeibo,
     fetchRecommandWeiboSuccess,

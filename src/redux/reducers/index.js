@@ -9,13 +9,14 @@ import recommandWeibo from './recommandWeibo';
 import profile from './profile';
 export default combineReducers({
   routing: routerReducer,
+  reduxAsyncConnect,
   auth,
   articles,
   QCircles,
   recommander,
   recommandWeibo,
   profile,
-  reduxAsyncConnect,
+
 })
 
 //reducer的名字对应着state的key，reducer返回的action对应着reducer下的key。

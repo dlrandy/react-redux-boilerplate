@@ -26,17 +26,17 @@ class Home extends React.Component {
    };
     return (
       <div>
-        <Helmet title="Home"/>
+         <Helmet title="Home"/>
           <Row className="">
-            <Col span="18">
+            <Col span="18" key="home-row-1">
               <SubMenu />
               <QCircleList />
               <Ueditor value="" style={styleOfUe} id="editorContainer" width="700" height="80" /> 
               <Shuoshuo />
             </Col>
-            <Col span="6">
+            <Col span="6" key="home-row-2">
             <RecommandUser />
-            <Affix offset={2}>
+            <Affix offset={3}>
                <RecommandWeibo />
             </Affix>
             </Col>

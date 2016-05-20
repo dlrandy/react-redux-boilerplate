@@ -3,9 +3,20 @@
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
-    "src/**/**",
+    "src/actions/*",
+    "src/components/*",
+    "src/constants/*",
+    "src/containers/*",
+    "src/helpers/*",
+    "src/redux/*",
+    "src/utils/*",
+    "src/browser.js",
+    "src/config.js",
     "dist/",
-    "static/"
+    "static/",
+    "package.json",
+    "webpack-assets.json",
+    ".*"
   ],
   "verbose": true,
   "execMap": {

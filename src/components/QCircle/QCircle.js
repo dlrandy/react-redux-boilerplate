@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './QCircle.scss';
 class QCircle extends React.Component {
     constructor(props) {
         super(props);
@@ -8,7 +8,7 @@ class QCircle extends React.Component {
     render() {
     	const {id, weibocount, name, icon} = this.props;
         return(
-         <div className="q-circle" > 
+         <div className={styles["q-circle"]} > 
            <a href={'q/'+ id}>
              <div>
              <img src={icon} />

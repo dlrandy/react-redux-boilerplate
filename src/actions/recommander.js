@@ -12,6 +12,7 @@ let url = authed ? '/api/Users/GetRecommendUserList' : '/api/guest/GetRecommendU
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'same-origin',
      body: JSON.stringify({
       page: 1,
       iscircle: 0,

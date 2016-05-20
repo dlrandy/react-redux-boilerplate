@@ -109,12 +109,14 @@ class Ueditor extends React.Component {
         margin: "0 auto",
     	};
          return (
-         	<div style={editorStyle}>
-             <script id={this.props.id} name="content" type="text/plain">
-                  
-             </script>
+         	<div>
+             <div style={editorStyle}>
+               <div id={this.props.id} name="content" ></div>
+             </div>
+             <div>
              <Button type="primary" onClick={this.addWeibo} style={{float: "right"}}>我说</Button>
              </div>
+          </div>
         )
     }
 }

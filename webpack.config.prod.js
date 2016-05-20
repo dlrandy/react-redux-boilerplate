@@ -28,7 +28,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new ExtractTextPlugin('[name]-[hash].min.css'),
+    new ExtractTextPlugin('[name]-[hash].min.css',  { allChunks: true }),
     new HtmlWebpackPlugin({
       template: 'index.tpl.html',
       inject: 'body',
@@ -59,9 +59,10 @@ module.exports = {
         "presets": ["es2015", "stage-0", "react"]
       }
     },
-    { test: /\.css$/, loader: 'style!css' },
-    { test: /\.scss$/, loader: 'style!css!sass?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!postcss!sass?outputStyle=expanded&sourceMap' }
-    ]
+    { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
+    { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!postcss!less?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
+    { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!postcss!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true') }
+      ]
   },
   postcss: [
     require('autoprefixer')

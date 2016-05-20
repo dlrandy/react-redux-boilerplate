@@ -45,3 +45,7 @@ export  function loginReset(res) {
 	};
 }
 
+export function isAuthLoaded(globalState) {
+  return globalState.auth && globalState.auth.user;
+}
+
