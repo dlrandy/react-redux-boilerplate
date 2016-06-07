@@ -1,6 +1,6 @@
 {
   "javascript": {
-    "main": "http://localhost:8001/main-ad26da097e9cc8d046f3.js"
+    "main": "http://localhost:8001/main-b625c6cbaf9a3085472e.js"
   },
   "styles": {},
   "assets": {
@@ -16,11 +16,16 @@
     },
     "./src/components/QCircle/QCircle.scss": {
       "q-circle": "q-circle___10qLm",
-      "_style": ".q-circle___10qLm a {\n  display: inline-block;\n  width: 128px;\n  height: 128px;\n  margin: 10px 20px;\n  overflow: hidden;\n  background: red;\n  text-align: center;\n}\n\n.q-circle___10qLm a p {\n  margin-top: 100px;\n  transition: margin-top .2s ease-in-out;\n}\n\n.q-circle___10qLm a:hover p {\n  margin-top: 30px;\n}\n"
+      "_style": ".q-circle___10qLm {\n  position: relative;\n  overflow: hidden;\n}\n\n.q-circle___10qLm a {\n  display: inline-block;\n  width: 128px;\n  height: 128px;\n  margin: 10px 20px;\n  overflow: hidden;\n  background: red;\n  text-align: center;\n}\n\n.q-circle___10qLm a p {\n  margin-top: 6px;\n  font-size: 18px;\n  transition: margin-top .2s ease-in-out;\n}\n\n.q-circle___10qLm a:hover p {\n  margin-top: -58px;\n  background-color: rgba(0, 0, 0, 0.3);\n  position: absolute;\n  top: 2;\n  left: 3;\n  width: 128px;\n  z-index: 2;\n}\n"
     },
     "./src/containers/Home/Home.scss": {
       "test": "test___1Nw6s",
       "_style": ".test___1Nw6s {\n  background: yellow;\n  font-size: 16px;\n}\n"
+    },
+    "./src/containers/TopRightMenu/TopRightMenu.scss": {
+      "ant-badge": "ant-badge___3-fZ0",
+      "head-example": "head-example___1rLEG",
+      "_style": ".ant-badge___3-fZ0 {\n  position: relative;\n  display: inline-block;\n  line-height: 35px;\n  vertical-align: middle;\n  height: 35px;\n  margin: 34px;\n}\n\n.head-example___1rLEG {\n  width: 42px;\n  height: 42px;\n  border-radius: 6px;\n  background: #eee;\n  display: inline-block;\n}\n"
     },
     "./src/containers/main.scss": {
       "_style": ""

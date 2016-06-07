@@ -1,5 +1,6 @@
 require('es6-promise').polyfill();
 import fetch from 'isomorphic-fetch';
+import cookie from 'react-cookie';
 
 import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_RESET } from '../constants/auth';
 
@@ -48,4 +49,13 @@ export  function loginReset(res) {
 export function isAuthLoaded(globalState) {
   return globalState.auth && globalState.auth.user;
 }
-
+export function loadAuth() {
+  let guest = cookie.load("guest");
+        console.log("------------------>",guest);
+        if(!guest) {
+            return Promise.resolve( fetch('/api/guest/Login',{
+              credentials: 'same-origin'
+            }));
+        }
+  return Promise.resolve( guest);
+}

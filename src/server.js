@@ -64,6 +64,10 @@ app.use('/api', (req, res) => {
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>');
     proxy.web(req, res, {target: targetUrl+"/api/"});
 });
+app.use('/attached', (req, res) => {
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>');
+    proxy.web(req, res, {target: targetUrl+"/attached/"});
+});
 proxy.on('error', (error, req, res) => {
   let json;
   console.error(error)

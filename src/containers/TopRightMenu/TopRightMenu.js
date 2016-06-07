@@ -1,6 +1,10 @@
 import React from 'react';
-import { Badge, Icon, Dropdown, Menu } from 'antd';
+import { Badge, Popover, Icon, Button, Dropdown, Menu } from 'antd';
 import { connect } from 'react-redux';
+
+import { imgConf } from '../../utils/config';
+import styles from './TopRightMenu.scss';
+
 import { fetchUserInfo, fetchUserInfoSuccess, fetchUserInfoFailure,
 fetchNewMessage, fetchNewMessageSuccess, fetchNewMessageFailure } from '../../actions/profile';
 
@@ -43,12 +47,18 @@ class TopRightMenu extends React.Component {
     render() {
     	const {  userInfo, newMessages } = this.props;
         return <div>
-        	<a href="#"><Badge count={newMessages&&newMessages[0]&&newMessages[0].count? newMessages[0].count:0}>
-        		<Icon type="notification" /> 
-        	</Badge></a>
+          
+    {newMessages&&newMessages[0]&&newMessages[0].count> 0 ?    <Popover content="sdsd" title="标题" trigger="hover">
+      <Button  type="ghost" > <Badge dot>
+    <Icon type="notification" />
+  </Badge>   </Button>
+    </Popover>:   <Badge>
+    <Icon type="notification" />
+  </Badge>}
+         
             <Dropdown overlay={<CustomMenu />}>
             	<a href='/person/'>
-            		<img src={userInfo&&userInfo.FacePath?userInfo.FacePath : '/static/uploads/3.png'} />
+            		<img src={userInfo&&userInfo.FacePath ?userInfo.FacePath + imgConf.SMALL_HEAD : '/static/uploads/3.png'} />
             		<span>{userInfo.NickName}</span>
             	</a>
             </Dropdown>
@@ -71,7 +81,7 @@ return {
     res.payload.status == 200 ? dispatch(fetchNewMessageSuccess(res.payload)) : dispatch(fetchNewMessageFailure(res.payload));
     }).catch( error => {
         console.log("error====>",error);
-        dispatch(fetchRecommandWeiboFailure(error));
+        dispatch(fetchNewMessageFailure(error));
     });
 
 	},

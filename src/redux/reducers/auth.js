@@ -1,5 +1,5 @@
 import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_RESET } from '../../constants/auth';
-
+ 
 const initialState = {
   user: null, status:null, error:null, loading: false,
 };

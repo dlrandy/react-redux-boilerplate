@@ -4,17 +4,48 @@ import { Link } from 'react-router';
 import { Menu, Row, Col, Spin } from 'antd';
 import fetch from 'isomorphic-fetch';
 import cookie from 'react-cookie';
+import { asyncConnect } from 'redux-async-connect';
+import { push } from 'react-router-redux';
 
 import { LogReg } from '../../components';
 import { TopRightMenu } from '../../containers';
+import { isAuthLoaded, loadAuth } from '../../actions/auth';
 
 import styles from './App.scss';
 
+  
+@asyncConnect([{
+  promise: ({store: {dispatch, getState}}) => {
+    const promises = [];
+
+    if (!isAuthLoaded(getState())) {
+      promises.push(dispatch(loadAuth()));
+    }
+
+    return Promise.all(promises);
+  }
+}])
+@connect(
+  state => ({auth: state.auth}),
+  { pushState: push})
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.displayName = 'App';
   }
+  static propTypes = {
+  user: PropTypes.object,
+  children: PropTypes.object.isRequired,
+  // dispatch: PropTypes.func.isRequired,
+
+  // location: PropTypes.object.isRequired
+  };
+  // https://medium.com/@rajaraodv/a-guide-for-building-a-react-redux-crud-app-7fe0b8943d0f#.q1lr5wojy
+
+  static contextTypes = {
+  // router: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
+  };
   componentWillReceiveProps(nextProps) {
     console.log('this.props.auth', this.props.auth);
     console.log('nextProps.', nextProps.auth);
@@ -25,17 +56,17 @@ class App extends React.Component {
     // }
   }
   componentWillMount() {
-        let guest = cookie.load("guest");
-        console.log("------------------>",guest);
-        if(!guest) {
-            fetch('/api/guest/Login',{
-              credentials: 'same-origin'
-            }).then(function(res){
-              console.log("=>>>>>>>>>>>>>>>>>>>>>>>>", res);
-            }).catch(function(res){
-              console.log("=>>>>>>>>>>>>>>>>>>>>>>>>", res);
-            });
-          }
+        // let guest = cookie.load("guest");
+        // console.log("------------------>",guest);
+        // if(!guest) {
+        //     fetch('/api/guest/Login',{
+        //       credentials: 'same-origin'
+        //     }).then(function(res){
+        //       console.log("=>>>>>>>>>>>>>>>>>>>>>>>>", res);
+        //     }).catch(function(res){
+        //       console.log("=>>>>>>>>>>>>>>>>>>>>>>>>", res);
+        //     });
+        //   }
   }
 
   render() {
@@ -82,19 +113,19 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  user: PropTypes.object,
-  children: PropTypes.object.isRequired,
-  // dispatch: PropTypes.func.isRequired,
+// App.propTypes = {
+//   user: PropTypes.object,
+//   children: PropTypes.object.isRequired,
+//   // dispatch: PropTypes.func.isRequired,
 
-  // location: PropTypes.object.isRequired
-};
-// https://medium.com/@rajaraodv/a-guide-for-building-a-react-redux-crud-app-7fe0b8943d0f#.q1lr5wojy
+//   // location: PropTypes.object.isRequired
+// };
+// // https://medium.com/@rajaraodv/a-guide-for-building-a-react-redux-crud-app-7fe0b8943d0f#.q1lr5wojy
 
-App.contextTypes = {
-  // router: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired
-};
+// App.contextTypes = {
+//   // router: PropTypes.object.isRequired,
+//   store: PropTypes.object.isRequired
+// };
 
 const mapStateToProps = (state) => {
   const { auth } = state;

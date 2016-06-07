@@ -1,4 +1,6 @@
 .q-circle{
+    position: relative;
+    overflow: hidden;
  a{
  	display: inline-block;
  	width: 128px;
@@ -7,15 +9,21 @@
     overflow: hidden;
     background: red;
     text-align: center;
+ 
+
     p{
-    	margin-top: 100px;
+       margin-top: 6px;
+       font-size: 18px;
     	transition: margin-top .2s ease-in-out;
     }
-    &:hover{
-      
-    }
     &:hover p{
-        margin-top: 30px;
+    margin-top: -58px;
+       background-color: rgba(0,0,0,.3);
+        position: absolute;
+        top: 2;
+        left: 3;
+        width: 128px;
+        z-index: 2;
     }
 
  }

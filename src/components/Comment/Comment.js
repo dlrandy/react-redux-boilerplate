@@ -1,5 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
+
+import { imgConf } from '../../utils/config';
 class Comment extends React.Component {
     constructor(props) {
         super(props);
@@ -16,13 +18,13 @@ class Comment extends React.Component {
         return <Row key={cmt.ID}>
          <Col span="4">
            <a href="/user/{User.UserID}">
-             <img src={User.FacePath} />
+             <img src={User.FacePath + imgConf.SMALL_HEAD} />
            </a>
          </Col>
          <Col span="20">
            <Row>
             <Col span="6">{User.NickName}</Col>
-            <Col span="18">{cmt.body}</Col>
+            <Col span="18"><div dangerouslySetInnerHTML={{__html:cmt.Body}} /></Col>
            </Row>
            <Row>
                 <Col span="18">

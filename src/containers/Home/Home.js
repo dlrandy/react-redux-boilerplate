@@ -36,7 +36,7 @@ class Home extends React.Component {
             </Col>
             <Col span="6" key="home-row-2">
             <RecommandUser />
-            <Affix offset={3}>
+            <Affix offsetTop={3}>
                <RecommandWeibo />
             </Affix>
             </Col>

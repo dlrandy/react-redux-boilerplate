@@ -2,10 +2,13 @@ import React from 'react';
 import { Row, Col, Icon, message, Pagination } from 'antd';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
+import Gallery from '../Gallery/Gallery';
 
 message.config({
     top: 120
 });
+
+import { imgConf } from '../../utils/config';
 import { Commentlist } from '../../containers';
 class Shuo extends React.Component {
     constructor(props) {
@@ -99,13 +102,25 @@ class Shuo extends React.Component {
     onDelete(){
 
     }
-    renderFileList() {
-       let list = this.props.FileList.map((file, inx) => {
-        return <span key={"file"+ inx}><a href={file.FilePath + file.FileName}><img/></a></span>;
-        });
-       return <div>
-            {list}
-       </div>;
+    renderFileList(list) {
+
+      console.log("---------------------",list)
+
+       const key = list[0].MD5;
+       const styleP = {width:'48px' };
+        const IMAGE_MAP = list.map((file, inx) => {
+          return {
+             src: file.FilePath + file.FileName,
+        thumbnail: file.ThumbDir+ file.MainThumb,
+        srcset: [
+          file.ThumbDir + file.ThumbList.split("|")[2]
+        ]
+          }
+       });
+        return IMAGE_MAP;
+       // return <div>
+       //      <Gallery images={IMAGE_MAP}/>
+       // </div>;
     }
     render() {
     	const { Weibo, User } = this.props;
@@ -113,10 +128,12 @@ class Shuo extends React.Component {
          if (this.props.Circle) {
             Circle = this.props.Circle;
         }
+        let ss= [];
         if (this.props.FileList) {
             FileList = this.props.FileList;
+            ss = this.renderFileList(FileList);
         }
-        console.log(Weibo)
+        console.log(ss);
         // this.state.Gooded = Weibo ? Weibo.Gooded : false;//Shuo.js:48 Uncaught (in promise) TypeError: Cannot set property 'gooded' of null(…)
         // this.state.User = User || {};
         // this.state.CommentList = CommentList || [];
@@ -128,17 +145,18 @@ class Shuo extends React.Component {
         return <Row>
         	<Col span="4">
         	  <a href={'/user/' + User.UserID}>
-        	  	<img src={User.FacePath} alt={User.Remark} />
+        	  	<img src={User.FacePath + imgConf.SMALL_HEAD} alt={User.Remark} />
         	  </a>
         	</Col>
             <Col span="20">
         	<ul>
         		<span>{User.NickName}</span><br/>
-        		<p>
+        		<div>
         			{Circle && <a href={'/q/' + Circle.id }><span>{Circle.name}</span></a>}
         			{Weibo.Remark}
-                    {FileList && this.renderFileList}
-        		</p>
+              {FileList && FileList.length >0 && <Gallery images={ss} />}
+
+        		</div>
         	</ul>
         	<Row> 
         		<Col span="12">{Weibo.DateAndTime}</Col>
@@ -153,7 +171,7 @@ class Shuo extends React.Component {
                 
         	</Row>
 
-        	{List.length > 0 && <Commentlist List = {List } />}
+        	{List&& List.length >= 0 && <Commentlist List = {List } />}
         	{Page && Page.Total && Page.Total > 5 && <Pagination defaultCurrent={Page.Page} total={Page.Total} />}
             </Col>
         </Row>;

@@ -32,7 +32,7 @@ console.log('assets =>>>>>',assets);
           <script src="/static/lib/zh-cn.js" />
 
           <link rel="shortcut icon" href="/favicon.ico" />
-          <link rel="stylesheet" type="text/css" href='/static/css/antd.css'/>
+          <link rel="stylesheet" href="/static/css/antd.min.css" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <script src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,es5-shim/4.5.7/es5-shim.min.js,es5-shim/4.5.7/es5-sham.min.js,html5shiv/3.7.2/html5shiv.min.js,media-match/2.0.2/media.match.min.js"></script>
         

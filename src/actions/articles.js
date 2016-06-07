@@ -2,6 +2,7 @@
 // https://medium.com/@rajaraodv/a-guide-for-building-a-react-redux-crud-app-7fe0b8943d0f#.q1lr5wojy
 require('es6-promise').polyfill();
 import fetch from 'isomorphic-fetch';
+
 import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_FAILURE } from '../constants/articles';
 // const ROOT_URL = location.href.indexOf('localhost') > 0 ? ' http://192.9.169.135:801/api' : ' http://192.9.169.135:801/api';
 export function fetchPosts() {
@@ -40,3 +41,4 @@ export function fetchPostsFailure(res) {
     payload: res.json(),
   };
 }
+//tset

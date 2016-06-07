@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Button, Alert, Spin} from 'antd';
 import  AttBtn  from '../AttBtn/AttBtn';
 
+import { imgConf } from '../../utils/config';
 import { 
     fetchRecommanders,
     fetchRecommandersSuccess,
@@ -26,7 +27,7 @@ class RecommandUser extends React.Component {
           return <li key={"recommander"+ inx}>
                 <Row>
                   <Col span="5">
-                        <img src={user.FacePath || '/static/uploads/4.gif'} />
+                        <img src={user.FacePath ? user.FacePath + imgConf.MIDDLE_HEAD: false || '/static/uploads/4.gif'} />
                         <AttBtn userId={user.UserID}/>
                   </Col>
                   <Col span="19">
@@ -41,7 +42,7 @@ class RecommandUser extends React.Component {
       });
     }
     componentWillMount() {
-      this.props.fetchRecommandersInComponent(this.props.auth.user);      
+      // this.props.fetchRecommandersInComponent(this.props.auth.user);      
     }
 
     render() {
