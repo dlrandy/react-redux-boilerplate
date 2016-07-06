@@ -154,7 +154,7 @@ const signInUser = (values, dispatch) => {
 			if (data.status == false) {
 				return dispatch(loginFailure(data));
 			} else {
-          sessionStorage.setItem('jwtToken', true);
+          localStorage&&localStorage.setItem()
           cookie.remove('guest');
 			    dispatch(loginSuccess(data));
 			}

@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import classnames from'classnames';
+import { asyncConnect } from 'redux-async-connect';
+
+
 import QCircleList from '../QCircleList/QCircleList';
 import Ueditor from '../../components/Ueditor/Ueditor';
 import Shuoshuo from '../Shuoshuo/Shuoshuo';
@@ -10,6 +13,14 @@ import { SubMenu, RecommandUser, RecommandWeibo } from '../../components';
 import { Row, Col, Affix } from 'antd';
 if (process.env.BROWSER) var styles = require('./Home.scss');
 // http://mobxjs.github.io/mobx/best/stateless-HMR.html
+// @asyncConnect([{
+//   deferred: true,
+//   promise: ({store: {dispatch, getState}}) =>{
+//    if(!isShuoShuoLoaded(getState())){
+//      return dispatch();
+//    }
+//   }
+// }])
 class Home extends React.Component {
   
   constructor(props) {

@@ -13,3 +13,4 @@ export RecommandUser from './RecommandUser/RecommandUser';
 export AttBtn from './AttBtn/AttBtn';
 export RecommandWeibo from './RecommandWeibo/RecommandWeibo';
 export Comment from './Comment/Comment';
+export WeiBo from './WeiBo/WeiBo';

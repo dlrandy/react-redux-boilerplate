@@ -70,7 +70,9 @@ class Gallery extends Component {
 			</div>
 		);
 	}
+
 	render () {
+
 		return (
 			<div className="section">
 				{this.props.heading && <h2>{this.props.heading}</h2>}

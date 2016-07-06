@@ -27,9 +27,8 @@ export default (store) => {
   }
   return ( <Route path="/" component={ App }>
     <IndexRoute component={ Home } />
-    <Route path="articles" component={ Articles }>
-    	<Route path="/article/:articleId" component={ Article } />
-    </Route>
+    <Route path="articles" component={ Articles }/>
+    <Route path="article/:articleId" component={ Article } />
     <Route path="about" component={ About } />
     <Route path="*" component={ NoMatch } />
   </Route>

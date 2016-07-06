@@ -70,6 +70,7 @@
     "react-cookie": "^0.4.5",
     "react-dom": "^0.14.8",
     "react-helmet": "^3.0.1",
+    "react-images": "^0.4.6",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.4",
     "redux": "^3.5.2",
